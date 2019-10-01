@@ -19,7 +19,9 @@ namespace Bot1
                                     //Throw an error if the coordinates are >4 or < 0, if we call a move it should just not acknowledge it if it is at the edge of the board. 
                                     //Also throw an error if the direction isnt in the enum list. 
                 string facing = words[3].ToUpper();
-                int[] coord = [System.Convert.ToInt32(words[1]), System.Convert.ToInt32(words[2])]; // structure is wrong here - fix
+             /*fix needed here*/
+            int[] coord = [System.Convert.ToInt32(words[1]), System.Convert.ToInt32(words[2])]; //trying to convert the string number to an int int.
+            // structure is wrong here - fix****************************
             }   
             int placeCount = 0; //Checks to see if Place has been called yet, nothing will work until it has been called the first time. Is there a more efficient way to do this?
             switch (action)
@@ -64,9 +66,36 @@ namespace Bot1
                     
                     break;
 
+                case "MOVE":
+                    if (placeCount == 1){
+                        
+                        switch (facing){  
+                            
+                            case "NORTH":
+                                coord[1] +=1; // changing the y axis 
+                                break;
+
+                            case "SOUTH":
+                                coord[1] -=1;
+                                break;
+                            
+                            case "EAST":
+                                coord[0] +=1;// changing the x axis
+                                break;
+
+                            case "WEST":
+                                coord[0] -=1;
+                                break;
+                            
+                        }
+
+
+                       }
+                    break;
+
                 case "REPORT":
                     if (placeCount == 1){
-                    Console.WriteLine("Output: " + coord[0] + "," + coord[1], + "," + facing);}
+                        Console.WriteLine("Output: " + coord[0] + "," + coord[1], + "," + facing);}
                     break;
                 
                 case "PLACE":
