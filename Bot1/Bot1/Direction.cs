@@ -5,7 +5,7 @@ using System.Text;
 namespace Bot1
 {
     enum Directions
-    { North, South, East, West }
+    { NORTH, SOUTH, EAST, WEST }
 
     
 }
