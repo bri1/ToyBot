@@ -46,8 +46,22 @@ namespace Bot1
 
                 case "RIGHT":
                     if (placeCount == 1){
-                    //movements.Right();}
-                    }
+                        int index = 0;
+                        while (index < rightTurnArray.Length){
+                                if (rightTurnArray[index] == facing){
+                                    if (index == rightTurnArray.Length-1){ // if it's the last element in the list,then the next direction is the first element
+                                        facing = rightTurnArray[0];
+                                        }
+                                    else{
+                                        facing = rightTurnArray[index+1]; // otherwise it's the next one over
+                                        }
+                                }     
+                                else { index +=1;}
+                    
+                        }   
+                        }   
+                  
+                    
                     break;
 
                 case "REPORT":
