@@ -98,8 +98,11 @@ namespace Bot1
                         Console.WriteLine("Output: " + coord[0] + "," + coord[1], + "," + facing);}
                     break;
                 
-                case "PLACE":
-                    movements.Place(System.Convert.ToInt32(words[1]), System.Convert.ToInt32(words[2]), words[3]);
+                case "PLACE": // assuming that the thing refreshes every time? //if it does refresh I will lose all my values anyway?
+                    facing = words[3].ToUpper();
+                    /*fix needed here*/
+                    int[] coord = [System.Convert.ToInt32(words[1]), System.Convert.ToInt32(words[2])];
+                    // structure is wrong here - fix****************************
                     placeCount = 1;
                     break;
 
