@@ -28,6 +28,10 @@ namespace Bot1
             Console.WriteLine("Welcome to the Toy Bot game!" + "\n" + "Please enter your command");
         }
 
+        //public Boolean HasIncorrectNumberOfCommands(string[] word)
+        //{
+        //    (words.Length == 1 && words[0] == "") || (action == "PLACE" && words.Length != 4
+        //}
       
         static void HandleCommands()
         {
@@ -37,16 +41,17 @@ namespace Bot1
             Console.WriteLine("Enter command:");
             string input = Console.ReadLine();
             string[] words = input.Split(',',' '); // Creating an array of the words split
-           
+            string action = words[0].ToUpper();
+
             //validating input - checking number of words is correct
-            if ((words.Length == 1 && words[0] == "") || (words.Length != 4))
+            if (())
             {
                 throw new Exception("Incorrect number of command fields entered.");
             }
 
 
 
-            string action = words[0].ToUpper();
+            
             int[] coord = new int[2];
             string facing = "";
             /*if (words.Length == 4){ // checks if there are enough items being entered, to save from the error of not being able to find the nth index in words. 
@@ -132,10 +137,14 @@ namespace Bot1
                     break;
 
                 case "REPORT":
-                    if (placeCount == 1){
-                        Console.WriteLine("Output: " + coord[0] + "," + coord[1] + "," + facing);}
+                    if (placeCount == 1)
+                    {
+                        //Console.WriteLine("Output: " + bot.XCoordinate + "," + bot.YCoordinate + "," + facing);}
+                        bot.Report();
+                        
+                    }
                     break;
-                
+
                 case "PLACE": // assuming that the thing refreshes every time? //if it does refresh I will lose all my values anyway?
 
                     facing = words[3].ToUpper();
