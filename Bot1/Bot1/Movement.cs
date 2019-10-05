@@ -7,8 +7,8 @@ namespace Bot1
     class Movement
     { 
 
-        Directions[] leftTurnArray = [Directions.North,Directions.West,Directions.South,Directions.East];
-        Directions[] rightTurnArray = [Directions.North,Directions.East,Directions.South,Directions.West]; 
+        //Directions[] leftTurnArray = new [Directions.North,Directions.West,Directions.South,Directions.East];
+        //Directions[] rightTurnArray = [Directions.North,Directions.East,Directions.South,Directions.West]; 
 
 
         public void Place(int x, int y, string direction)
