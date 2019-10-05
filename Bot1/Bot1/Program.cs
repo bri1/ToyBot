@@ -10,7 +10,15 @@ namespace Bot1
             Welcome();
             
             while (true){
-                HandleCommands();
+                try
+                {
+                    HandleCommands();
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine($"Error: {exception.Message}");
+                }
+                
             }
             
         }
@@ -26,8 +34,18 @@ namespace Bot1
             string[] leftTurnArray = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };//Decided against using enums
             string[] rightTurnArray = new string[] { "NORTH", "EAST", "SOUTH", "WEST" };
 
+            Console.WriteLine("Enter command:");
             string input = Console.ReadLine();
             string[] words = input.Split(',',' '); // Creating an array of the words split
+           
+            //validating input - checking number of words is correct
+            if ((words.Length == 1 && words[0] == "") || (words.Length != 4))
+            {
+                throw new Exception("Incorrect number of command fields entered.");
+            }
+
+
+
             string action = words[0].ToUpper();
             int[] coord = new int[2];
             string facing = "";
