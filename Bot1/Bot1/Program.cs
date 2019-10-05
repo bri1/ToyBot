@@ -3,20 +3,35 @@
 namespace Bot1
 {
     class Program
-    {
+    { 
+
         static void Main(string[] args)
-        {   //loop through to find the current direction and then the next item tells the new direction. Not feasible for bigger enum sets but for the four directions should be fine.
-            string[] leftTurnArray = new string[]{"NORTH","WEST","SOUTH","EAST"};//Decided against using enums
-            string[] rightTurnArray =new string[]{"NORTH","EAST","SOUTH","WEST"};
+        {
+            Welcome();
+            
+            while (true){
+                HandleCommands();
+            }
+            
+        }
+        
+        static void Welcome()
+        {
+            Console.WriteLine("Welcome to the Toy Bot game!" + "\n" + "Please enter your command");
+        }
 
+      
+        static void HandleCommands()
+        {
+            string[] leftTurnArray = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };//Decided against using enums
+            string[] rightTurnArray = new string[] { "NORTH", "EAST", "SOUTH", "WEST" };
 
-            Console.WriteLine("Welcome to the Toy Bot game!"+ "\n" + "Please enter your command"); // double check if this works with the new line.
             string input = Console.ReadLine();
-            string[] words = input.Split(','); // Creating an array of the words split
+            string[] words = input.Split(',',' '); // Creating an array of the words split
             string action = words[0].ToUpper();
             int[] coord = new int[2];
             string facing = "";
-            if (words.Length == 4){ // checks if there are enough items being entered, to save from the error of not being able to find the nth index in words. 
+            /*if (words.Length == 4){ // checks if there are enough items being entered, to save from the error of not being able to find the nth index in words. 
                                     //Do we need to do a type check, no but should do a validity check. If any of the items are not valid they should throw an error?
                                     //Throw an error if the coordinates are >4 or < 0, if we call a move it should just not acknowledge it if it is at the edge of the board. 
                                     //Also throw an error if the direction isnt in the enum list. 
@@ -25,8 +40,9 @@ namespace Bot1
                 coord[0] = System.Convert.ToInt32(words[1]); //trying to convert the string number to an int int.
                 coord[1] = System.Convert.ToInt32(words[2]);
             
-            }   
+            }*/   
             int placeCount = 0; //Checks to see if Place has been called yet, nothing will work until it has been called the first time. Is there a more efficient way to do this?
+            var bot = new Bot();
             switch (action)
             {                
                 case "LEFT":
@@ -103,16 +119,23 @@ namespace Bot1
                     break;
                 
                 case "PLACE": // assuming that the thing refreshes every time? //if it does refresh I will lose all my values anyway?
+
                     facing = words[3].ToUpper();
-                    
+
                     coord[0] = System.Convert.ToInt32(words[1]); //trying to convert the string number to an int int.
                     coord[1] = System.Convert.ToInt32(words[2]);
-                    
+
                     placeCount = 1;
+
+                    bot.Place(coord[0], coord[1], facing);
+
                     break;
 
 
             }
+            //Console.ReadKey(); //Waits for you to press something before it'll close the window
+
         }
+
     }
 }

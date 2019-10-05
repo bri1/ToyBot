@@ -4,16 +4,18 @@ using System.Text;
 
 namespace Bot1
 {
-    class Movement
-    { 
-
-        //Directions[] leftTurnArray = new [Directions.North,Directions.West,Directions.South,Directions.East];
-        //Directions[] rightTurnArray = [Directions.North,Directions.East,Directions.South,Directions.West]; 
-
+    class Bot
+    {
+        public int? XCoordinate { get; set; } //? means that it is a nullable int, starts off as null
+        public int? YCoordinate { get; set; }
 
         public void Place(int x, int y, string direction)
         {
-
+            Console.WriteLine("Placed object");
+            
+            XCoordinate = x;
+            YCoordinate = y;
+            Console.WriteLine($"x:{XCoordinate}, y:{YCoordinate} direction:{direction}");
         }
 
         public void Left() // doesnt need any input parameters // needs the current location/direction and needs to be able to update it.
