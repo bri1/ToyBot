@@ -34,7 +34,10 @@ namespace Bot1
 
         public void Report()
         {
-            Console.WriteLine("Output: " + XCoordinate + "," + YCoordinate + "," );
+            if (HasBeenPlaced == true)
+            {
+                Console.WriteLine("Output: " + XCoordinate + "," + YCoordinate + ",");
+            }
         }
     }
 

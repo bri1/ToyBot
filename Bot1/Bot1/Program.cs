@@ -44,7 +44,7 @@ namespace Bot1
             string action = words[0].ToUpper();
 
             //validating input - checking number of words is correct
-            if (())
+            if(((action == "PLACE")&& (words.Length != 4))|| ((words.Length <1 || words.Length>4))) //probably not the neatest way to do this error handling. Needs optimisation.
             {
                 throw new Exception("Incorrect number of command fields entered.");
             }
@@ -64,12 +64,13 @@ namespace Bot1
                 coord[1] = System.Convert.ToInt32(words[2]);
             
             }*/   
-            int placeCount = 0; //Checks to see if Place has been called yet, nothing will work until it has been called the first time. Is there a more efficient way to do this?
-            var bot = new Bot();
+           // int placeCount = 0; //Checks to see if Place has been called yet, nothing will work until it has been called the first time. Is there a more efficient way to do this?
+            var bot = new Bot(); //overwriting every time you run the handlecommands () and creating a new bot-- issue?
             switch (action)
             {                
                 case "LEFT":
-                    if (placeCount == 1){
+                    if (bot.HasBeenPlaced)
+                    {
                     //We know that the direction is going to be in the directions list. So we dont need to see if it exists, we just need to find out where it is. So we loop through and try to match
                     //the input string with the string of the enum at each index and if we find it, we return the item at the next index. 
                     int index = 0;
@@ -90,7 +91,7 @@ namespace Bot1
                     break;
 
                 case "RIGHT":
-                    if (placeCount == 1){
+                    if (bot.HasBeenPlaced){
                         int index = 0;
                         while (index < rightTurnArray.Length){
                                 if (rightTurnArray[index] == facing){
@@ -110,7 +111,7 @@ namespace Bot1
                     break;
 
                 case "MOVE":
-                    if (placeCount == 1){
+                    if (bot.HasBeenPlaced){
                         
                         switch (facing){  
                             
@@ -137,12 +138,9 @@ namespace Bot1
                     break;
 
                 case "REPORT":
-                    if (placeCount == 1)
-                    {
-                        //Console.WriteLine("Output: " + bot.XCoordinate + "," + bot.YCoordinate + "," + facing);}
-                        bot.Report();
-                        
-                    }
+
+                    bot.Report();
+ 
                     break;
 
                 case "PLACE": // assuming that the thing refreshes every time? //if it does refresh I will lose all my values anyway?
@@ -152,7 +150,7 @@ namespace Bot1
                     coord[0] = System.Convert.ToInt32(words[1]); //trying to convert the string number to an int int.
                     coord[1] = System.Convert.ToInt32(words[2]);
 
-                    placeCount = 1;
+                    //placeCount = 1;
 
                     bot.Place(coord[0], coord[1], facing);
 
