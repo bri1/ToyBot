@@ -8,11 +8,12 @@ namespace Bot1
         static void Main(string[] args)
         {
             Welcome();
-            
+            var bot = new Bot();
+
             while (true){
                 try
                 {
-                    HandleCommands();
+                    HandleCommands(bot);
                 }
                 catch (Exception exception)
                 {
@@ -33,7 +34,7 @@ namespace Bot1
         //    (words.Length == 1 && words[0] == "") || (action == "PLACE" && words.Length != 4
         //}
       
-        static void HandleCommands()
+        static void HandleCommands(Bot bot)
         {
             string[] leftTurnArray = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };//Decided against using enums
             string[] rightTurnArray = new string[] { "NORTH", "EAST", "SOUTH", "WEST" };
@@ -65,7 +66,7 @@ namespace Bot1
             
             }*/   
            // int placeCount = 0; //Checks to see if Place has been called yet, nothing will work until it has been called the first time. Is there a more efficient way to do this?
-            var bot = new Bot(); //overwriting every time you run the handlecommands () and creating a new bot-- issue?
+            //var bot = new Bot(); //overwriting every time you run the handlecommands () and creating a new bot-- issue?
             switch (action)
             {                
                 case "LEFT":
