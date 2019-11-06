@@ -20,7 +20,7 @@ namespace Bot1
             {
                 if (!HasBeenPlaced)
                 {
-                    Console.WriteLine("Placed object");
+                    //Console.WriteLine("Placed object");
 
                     XCoordinate = x;
                     YCoordinate = y;
