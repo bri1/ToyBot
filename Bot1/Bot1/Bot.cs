@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Bot1
 {
@@ -15,23 +16,31 @@ namespace Bot1
         string[] leftTurnArray = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };//Decided against using enums
         string[] rightTurnArray = new string[] { "NORTH", "EAST", "SOUTH", "WEST" };
 
-        public void Place(int x, int y, string direction)
+        public void Place(int x, int y, string direction) // could this be replaced with a try and catch?
         {
-            if (!HasBeenPlaced)
+            if (leftTurnArray.Contains(direction))
             {
-                Console.WriteLine("Placed object");
+                if (!HasBeenPlaced)
+                {
+                    Console.WriteLine("Placed object");
 
-                XCoordinate = x;
-                YCoordinate = y;
-                Direction = direction;
+                    XCoordinate = x;
+                    YCoordinate = y;
+                    Direction = direction;
 
-                Console.WriteLine($"Successfully placed: x:{XCoordinate}, y:{YCoordinate}, direction:{direction}");
+                    Console.WriteLine($"Successfully placed: x:{XCoordinate}, y:{YCoordinate}, direction:{direction}");
+                }
+
+                else
+                {
+                    Console.WriteLine($"Cannot place more than one robot on table ");
+
+                }
             }
-
             else
             {
-                Console.WriteLine($"Cannot place more than one robot on table ");
-                
+                Console.WriteLine($"Please input a valid direction");
+
             }
         }
 

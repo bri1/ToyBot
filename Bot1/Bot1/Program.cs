@@ -70,74 +70,14 @@ namespace Bot1
             switch (action)
             {                
                 case "LEFT":
-                    //if (bot.HasBeenPlaced)
-                    //{
-                    ////We know that the direction is going to be in the directions list. So we dont need to see if it exists, we just need to find out where it is. So we loop through and try to match
-                    ////the input string with the string of the enum at each index and if we find it, we return the item at the next index. 
-                    //int index = 0;
-                    //while (index < leftTurnArray.Length){
-                    //        if (leftTurnArray[index] == bot.Direction){
-                    //            if (index == leftTurnArray.Length-1){ // if it's the last element in the list,then the next direction is the first element
-                    //                bot.Direction = leftTurnArray[0];
-                    //                }
-                    //            else{
-                    //                bot.Direction = leftTurnArray[index+1]; // otherwise it's the next one over
-                    //                }
-                    //        }     
-                    //        else { index +=1;}
-
-                    //}   
-                    //} 
                     bot.Left();
                     break;
 
                 case "RIGHT":
-                    //if (bot.HasBeenPlaced){
-                    //    int index = 0;
-                    //    while (index < rightTurnArray.Length){
-                    //            if (rightTurnArray[index] == bot.Direction)
-                    //        {
-                    //                if (index == rightTurnArray.Length-1){ // if it's the last element in the list,then the next direction is the first element
-                    //                bot.Direction = rightTurnArray[0];
-                    //                    }
-                    //                else{
-                    //                bot.Direction = rightTurnArray[index+1]; // otherwise it's the next one over
-                    //                    }
-                    //            }     
-                    //            else { index +=1;}
-
-                    //    }   
-                    //    }   
-
                     bot.Right();
                     break;
 
                 case "MOVE":
-                    //if (bot.HasBeenPlaced){ //not sure if we want to move this all across to Bot.cs?
-
-                    //    switch (bot.Direction)
-                    //    {  
-
-                    //        case "NORTH":
-                    //            bot.YCoordinate +=1; // changing the y axis 
-                    //            break;
-
-                    //        case "SOUTH":
-                    //            bot.YCoordinate -=1;
-                    //            break;
-
-                    //        case "EAST":
-                    //            bot.XCoordinate +=1;// changing the x axis
-                    //            break;
-
-                    //        case "WEST":
-                    //            bot.XCoordinate -=1;
-                    //            break;
-
-                    //    }
-
-
-                    //   }
                     bot.Move();
                     break;
 
@@ -153,8 +93,6 @@ namespace Bot1
 
                     coord[0] = System.Convert.ToInt32(words[1]); //trying to convert the string number to an int int.
                     coord[1] = System.Convert.ToInt32(words[2]);
-
-                    //placeCount = 1;
 
                     bot.Place(coord[0], coord[1], facing);
 
