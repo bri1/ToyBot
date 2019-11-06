@@ -97,30 +97,30 @@ namespace Bot1
             { 
 
                 switch (Direction)
-                {//There's a lot of copied code here. There must be a better way to do this. 
+                {
 
                     case "NORTH":
-                        if ((YCoordinate > 0) && (YCoordinate < 5)){
+                        if ((YCoordinate >= 0) && (YCoordinate < 4)){
                             YCoordinate += 1; // changing the y axis
                         }
                         break;
 
                     case "SOUTH":
-                        if ((YCoordinate > 0) && (YCoordinate < 5))
+                        if ((YCoordinate > 0) && (YCoordinate <= 4))
                         {
                             YCoordinate -= 1; // changing the y axis
                         }
                         break;
 
                     case "EAST":
-                        if ((XCoordinate > 0) && (XCoordinate < 5))
+                        if ((XCoordinate >= 0) && (XCoordinate < 4))
                         {
                             XCoordinate += 1; // changing the x axis
                         }
                         break;
 
                     case "WEST":
-                        if ((XCoordinate > 0) && (XCoordinate < 5))
+                        if ((XCoordinate > 0) && (XCoordinate <= 4))
                         {
                             XCoordinate -= 1; // changing the x axis
                         }
