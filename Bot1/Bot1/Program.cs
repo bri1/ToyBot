@@ -76,12 +76,12 @@ namespace Bot1
                     //the input string with the string of the enum at each index and if we find it, we return the item at the next index. 
                     int index = 0;
                     while (index < leftTurnArray.Length){
-                            if (leftTurnArray[index] == facing){
+                            if (leftTurnArray[index] == bot.Direction){
                                 if (index == leftTurnArray.Length-1){ // if it's the last element in the list,then the next direction is the first element
-                                    facing = leftTurnArray[0];
+                                    bot.Direction = leftTurnArray[0];
                                     }
                                 else{
-                                    facing = leftTurnArray[index+1]; // otherwise it's the next one over
+                                    bot.Direction = leftTurnArray[index+1]; // otherwise it's the next one over
                                     }
                             }     
                             else { index +=1;}
@@ -95,12 +95,13 @@ namespace Bot1
                     if (bot.HasBeenPlaced){
                         int index = 0;
                         while (index < rightTurnArray.Length){
-                                if (rightTurnArray[index] == facing){
+                                if (rightTurnArray[index] == bot.Direction)
+                            {
                                     if (index == rightTurnArray.Length-1){ // if it's the last element in the list,then the next direction is the first element
-                                        facing = rightTurnArray[0];
+                                    bot.Direction = rightTurnArray[0];
                                         }
                                     else{
-                                        facing = rightTurnArray[index+1]; // otherwise it's the next one over
+                                    bot.Direction = rightTurnArray[index+1]; // otherwise it's the next one over
                                         }
                                 }     
                                 else { index +=1;}
@@ -112,24 +113,25 @@ namespace Bot1
                     break;
 
                 case "MOVE":
-                    if (bot.HasBeenPlaced){
+                    if (bot.HasBeenPlaced){ //not sure if we want to move this all across to Bot.cs?
                         
-                        switch (facing){  
+                        switch (bot.Direction)
+                        {  
                             
                             case "NORTH":
-                                coord[1] +=1; // changing the y axis 
+                                bot.YCoordinate +=1; // changing the y axis 
                                 break;
 
                             case "SOUTH":
-                                coord[1] -=1;
+                                bot.YCoordinate -=1;
                                 break;
                             
                             case "EAST":
-                                coord[0] +=1;// changing the x axis
+                                bot.XCoordinate +=1;// changing the x axis
                                 break;
 
                             case "WEST":
-                                coord[0] -=1;
+                                bot.XCoordinate -=1;
                                 break;
                             
                         }
