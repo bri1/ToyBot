@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace Bot1
@@ -39,9 +37,9 @@ namespace Bot1
             }
             else
             {
-                Console.WriteLine($"Please input a valid direction");
-
+                throw new Exception("incorrect direction entered. Directions available are [NORTH, SOUTH, EAST, WEST]");
             }
+
         }
 
         public void Left() // doesnt need any input parameters // needs the current location/direction and needs to be able to update it.
@@ -146,6 +144,11 @@ namespace Bot1
             if (HasBeenPlaced == true)
             {
                 Console.WriteLine("<Report> Robot is currently here : " + XCoordinate + "," + YCoordinate + "," + Direction);
+            }
+
+            else
+            {
+                throw new Exception("No robot present on table.");
             }
         }
     }

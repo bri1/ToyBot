@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Bot1
 {
@@ -39,16 +40,27 @@ namespace Bot1
             //string[] leftTurnArray = new string[] { "NORTH", "WEST", "SOUTH", "EAST" };//Decided against using enums
             //string[] rightTurnArray = new string[] { "NORTH", "EAST", "SOUTH", "WEST" };
 
+            string[] ValidCommands = new string[] { "PLACE", "MOVE", "LEFT", "RIGHT", "REPORT" };
+
             Console.WriteLine("Enter command:");
             string input = Console.ReadLine();
             string[] words = input.Split(',',' '); // Creating an array of the words split
             string action = words[0].ToUpper();
+
+            if (!ValidCommands.Contains(action))
+            {
+                throw new Exception("Please use a valid command. Commands available are [PLACE, MOVE, LEFT, RIGHT, REPORT]");
+            }
+
+
 
             //validating input - checking number of words is correct
             if(((action == "PLACE")&& (words.Length != 4))|| ((words.Length <1 || words.Length>4))) //probably not the neatest way to do this error handling. Needs optimisation.
             {
                 throw new Exception("Incorrect number of command fields entered.");
             }
+
+            
 
 
 
