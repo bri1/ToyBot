@@ -34,16 +34,17 @@ namespace Bot1.Tests
             var xCoordinate = -1; //lower case first for variable names
             var yCoordinate = 0;
             var facing = "NORTH";
-            var expectedXDirection = 0;
+            
+
 
             // Act
             bot.Place(xCoordinate, yCoordinate, facing);
 
 
             // Assert
-            Assert.Equal(expectedXDirection, bot.XCoordinate);
-            Assert.Equal(yCoordinate, bot.YCoordinate);
-            Assert.Equal(facing, bot.Direction);
+            Assert.Null(bot.XCoordinate);
+            Assert.Null(bot.YCoordinate);
+            Assert.Null(bot.Direction);
         }
 
 

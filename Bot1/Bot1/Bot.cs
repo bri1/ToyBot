@@ -18,13 +18,22 @@ namespace Bot1
         {
             if (leftTurnArray.Contains(direction))
             {
+                if (!IsValid(x))
+                {
+                    Console.WriteLine("Please place bot on the table");
+                    return;
+                }
+
                 if (!HasBeenPlaced)
                 {
                     //Console.WriteLine("Placed object");
+                    
 
                     XCoordinate = x;
                     YCoordinate = y;
                     Direction = direction;
+
+                    
 
                     Console.WriteLine($"Successfully placed: x:{XCoordinate}, y:{YCoordinate}, direction:{direction}");
                 }
@@ -151,6 +160,20 @@ namespace Bot1
                 throw new Exception("No robot present on table.");
             }
         }
+
+        public bool IsValid(int x)
+        {
+            if ((x > 5) || (x < 0))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+
     }
 
 }
