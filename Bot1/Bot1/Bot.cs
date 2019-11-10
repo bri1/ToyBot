@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Bot1
 {
-    class Bot
+    public class Bot
     {
         public int? XCoordinate { get; set; } //? means that it is a nullable int, starts off as null
         public int? YCoordinate { get; set; }
