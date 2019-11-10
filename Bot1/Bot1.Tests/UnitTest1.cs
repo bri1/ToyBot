@@ -4,58 +4,60 @@ using Bot1;
 
 namespace Bot1.Tests
 {
-    public class UnitTest1
+
+    public class BotUnitTest1
     {
-        [Fact]
-        public void Place_initial_bot_should_place_bot_on_table_successfully()
+        private readonly Bot _testBot; //only ever making changes to it in the constructor
+
+        public BotUnitTest1()
+        {
+           _testBot = new Bot();
+        }
+
+        [Theory]
+        [InlineDataAttribute(0,0,"NORTH")]
+        [InlineDataAttribute(1, 2, "SOUTH")]
+        [InlineDataAttribute(4, 2, "EAST")]
+
+        public void Place_initial_bot_should_place_bot_on_table_successfully(int xCoordinate, int yCoordinate, string direction)
         {
             // Arrange
-            var bot = new Bot();
-            var xCoordinate = 0; //lower case first for variable names
-            var yCoordinate = 0;
-            var facing = "NORTH";
-            
+                             
 
             // Act
-            bot.Place(xCoordinate, yCoordinate, facing);
+            _testBot.Place(xCoordinate, yCoordinate, direction);
 
 
             // Assert
-            Assert.Equal(xCoordinate, bot.XCoordinate);
-            Assert.Equal(yCoordinate, bot.YCoordinate);
-            Assert.Equal(facing, bot.Direction);
+            Assert.Equal(xCoordinate, _testBot.XCoordinate);
+            Assert.Equal(yCoordinate, _testBot.YCoordinate);
+            Assert.Equal(direction, _testBot.Direction);
         }
 
-        [Fact]
-        public void Placing_bot_off_table_should_fail()
+        [Theory]
+        [InlineDataAttribute(3, 5, "WEST")]
+        [InlineDataAttribute(3, 7, "WEST")]
+        public void Placing_bot_off_table_should_fail(int xCoordinate, int yCoordinate, string direction)
         {
             // Arrange
-            var bot = new Bot();
-            var xCoordinate = -1; //lower case first for variable names
-            var yCoordinate = 0;
-            var facing = "NORTH";
-            
+                                 
 
 
             // Act
-            bot.Place(xCoordinate, yCoordinate, facing);
+            _testBot.Place(xCoordinate, yCoordinate, direction);
 
 
             // Assert
-            Assert.Null(bot.XCoordinate);
-            Assert.Null(bot.YCoordinate);
-            Assert.Null(bot.Direction);
+            Assert.Null(_testBot.XCoordinate);
+            Assert.Null(_testBot.YCoordinate);
+            Assert.Null(_testBot.Direction);
         }
 
 
-
-        //public void Test1()
-        //{
-        //    // Arrange
-        //    // Act
-        //    // Assert
-
-        //}
 
     }
 }
+
+//Group of tests= Test suite
+//Testing all individual commands
+//

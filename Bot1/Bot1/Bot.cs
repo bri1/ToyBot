@@ -18,7 +18,7 @@ namespace Bot1
         {
             if (leftTurnArray.Contains(direction))
             {
-                if (!IsValid(x))
+                if (!IsValid(x) || !IsValid(y))
                 {
                     Console.WriteLine("Please place bot on the table");
                     return;
@@ -163,7 +163,7 @@ namespace Bot1
 
         public bool IsValid(int x)
         {
-            if ((x > 5) || (x < 0))
+            if ((x >= 5) || (x < 0))
             {
                 return false;
             }
