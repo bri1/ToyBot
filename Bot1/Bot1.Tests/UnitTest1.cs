@@ -227,7 +227,13 @@ namespace Bot1.Tests
 
             }
 
-
+            var standardOutput = new StreamWriter(Console.OpenStandardOutput());
+            standardOutput.AutoFlush = true;
+            Console.SetOut(standardOutput);
+            //Redirects the console output back to standard output as previously the tests were running into the 
+            //error that they were trying to access a closed textWriter - aka stringwriter.
+            //As tests are running concurrently, the different tests are trying to write to the same textWriter but it closes after the first so it was getting confused.
+            //https://docs.microsoft.com/en-us/dotnet/api/system.console.setout?view=netframework-4.8
 
         }
 
