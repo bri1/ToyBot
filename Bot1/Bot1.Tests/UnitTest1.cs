@@ -1,18 +1,15 @@
 using System;
 using Xunit;
 using Bot1;
+using System.IO;
+
 
 namespace Bot1.Tests
 {
 
-    public class BotUnitTest1
+    public class BotUnitTest1 : BaseTest //implementing (inheriting it) BaseTest in BotUnitTest1 - BotUnitTest1 is now a subclass of BaseTest
     {
-        private readonly Bot _testBot; //only ever making changes to it in the constructor
-
-        public BotUnitTest1()
-        {
-           _testBot = new Bot();
-        }
+        //private readonly Bot _testBot; //only ever making changes to it in the constructor
 
         [Theory]
         [InlineDataAttribute(0,0,"NORTH")]
@@ -54,91 +51,105 @@ namespace Bot1.Tests
         }
 
 
+        //[Theory]
+        //[InlineDataAttribute(0, 0, "NORTH")]
+        //[InlineDataAttribute(0, 0, "SOUTH")]
+        //[InlineDataAttribute(0, 0, "EAST")]
+        //[InlineDataAttribute(0,0, "WEST")]
+
+
+        //public void Left_command_should_change_bot_direction_in_anticlockwise_direction(int xCoordinate, int yCoordinate, string direction)
+        //{
+        //    //Arrange
+        //    _testBot.Place(xCoordinate, yCoordinate, direction);
+            
+
+        //    //Act
+        //    _testBot.Left();
+
+        //    //Assert
+        //    switch (direction) {
+        //        case "NORTH":
+        //            Assert.Equal("WEST", _testBot.Direction);
+        //            break;  //Can we put breaks in a test?
+        //        case "SOUTH":
+        //            Assert.Equal("EAST", _testBot.Direction);
+
+        //            break;
+
+        //        case "EAST":
+        //            Assert.Equal("NORTH", _testBot.Direction);
+
+        //            break;
+
+        //        case "WEST":
+        //            Assert.Equal("SOUTH", _testBot.Direction);
+
+        //            break;
+        //    }
+
+        
+        //}
+
+
+
         [Theory]
-        [InlineDataAttribute(0, 0, "NORTH")]
-        [InlineDataAttribute(0, 0, "SOUTH")]
-        [InlineDataAttribute(0, 0, "EAST")]
-        [InlineDataAttribute(0,0, "WEST")]
-
-
-        public void Left_command_should_change_bot_direction_in_anticlockwise_direction(int xCoordinate, int yCoordinate, string direction)
+        [InlineDataAttribute(0, 0, "NORTH",0,0, "WEST")]
+        [InlineDataAttribute(0, 0, "SOUTH",0,0,"EAST")]
+        [InlineDataAttribute(0, 0, "EAST",0,0,"NORTH")]
+        [InlineDataAttribute(0, 0, "WEST",0,0,"SOUTH")]
+        public void Left_command_should_change_bot_direction_in_anticlockwise_direction2(
+            int xCoordinate, int yCoordinate,string direction,
+            int expectedX, int expectedY, 
+            string expectedDirection)
         {
             //Arrange
             _testBot.Place(xCoordinate, yCoordinate, direction);
             
-
             //Act
             _testBot.Left();
-
+            
             //Assert
-            switch (direction) {
-                case "NORTH":
-                    Assert.Equal("WEST", _testBot.Direction);
-                    break;  //Can we put breaks in a test?
-                case "SOUTH":
-                    Assert.Equal("EAST", _testBot.Direction);
+            Assert.Equal(expectedX, _testBot.XCoordinate);
+            Assert.Equal(expectedY, _testBot.YCoordinate);
+            Assert.Equal(expectedDirection, _testBot.Direction);
 
-                    break;
-
-                case "EAST":
-                    Assert.Equal("NORTH", _testBot.Direction);
-
-                    break;
-
-                case "WEST":
-                    Assert.Equal("SOUTH", _testBot.Direction);
-
-                    break;
-            }
-
-        
         }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
         [Theory]
-        [InlineDataAttribute(0, 0, "NORTH")]
-        [InlineDataAttribute(0, 0, "SOUTH")]
-        [InlineDataAttribute(0, 0, "EAST")]
-        [InlineDataAttribute(0, 0, "WEST")]
+        [InlineDataAttribute(1, 1, "NORTH",1,2,"NORTH")]
+        [InlineDataAttribute(1, 1, "SOUTH", 1, 0, "SOUTH")]
+        [InlineDataAttribute(1, 1, "EAST", 2, 1, "EAST")]
+        [InlineDataAttribute(1, 1, "WEST", 0, 1, "WEST")]
 
 
-        public void Right_command_should_change_bot_direction_in_clockwise_direction(int xCoordinate, int yCoordinate, string direction)
-        {
-            //Arrange
-            _testBot.Place(xCoordinate, yCoordinate, direction);
 
 
-            //Act
-            _testBot.Right();
-
-            //Assert
-            switch (direction)
-            {
-                case "NORTH":
-                    Assert.Equal("EAST", _testBot.Direction);
-                    break;
-                case "SOUTH":
-                    Assert.Equal("WEST", _testBot.Direction);
-
-                    break;
-
-                case "EAST":
-                    Assert.Equal("SOUTH", _testBot.Direction);
-
-                    break;
-
-                case "WEST":
-                    Assert.Equal("NORTH", _testBot.Direction);
-
-                    break;
-            }
-
-
-        }
 
         //MIGHT NEED TO RENAME THIS ONE
-        public void Move_command_should_increase_coordinate_by_one_in_facing_direction(int xCoordinate, int yCoordinate, string direction)
+        public void Move_command_should_increase_coordinate_by_one_in_facing_direction(
+            int xCoordinate, int yCoordinate, string direction,
+            int expectedX, int expectedY, string expectedDirection)
         {
             //Arrange
             _testBot.Place(xCoordinate, yCoordinate, direction);
@@ -148,36 +159,15 @@ namespace Bot1.Tests
             _testBot.Move();
 
             //Assert
-            switch (direction)
-            {
-                case "NORTH":
-                    Assert.Equal(yCoordinate + 1, _testBot.YCoordinate);
-                    Assert.Equal(xCoordinate, _testBot.XCoordinate);
-                    Assert.Equal(direction, _testBot.Direction);
-                    break;
-                case "SOUTH":
-                    Assert.Equal(yCoordinate, _testBot.YCoordinate);
-                    Assert.Equal(xCoordinate, _testBot.XCoordinate);
-                    Assert.Equal(direction, _testBot.Direction);
-                    break;
 
-                case "EAST":
-                    Assert.Equal(yCoordinate, _testBot.YCoordinate);
-                    Assert.Equal(xCoordinate, _testBot.XCoordinate);
-                    Assert.Equal(direction, _testBot.Direction);
-                    break;
+            Assert.Equal(expectedX, _testBot.XCoordinate);
+            Assert.Equal(expectedY, _testBot.YCoordinate);
+            Assert.Equal(expectedDirection, _testBot.Direction);
 
-                case "WEST":
-                    Assert.Equal(yCoordinate, _testBot.YCoordinate);
-                    Assert.Equal(xCoordinate, _testBot.XCoordinate);
-                    Assert.Equal(direction, _testBot.Direction);
-
-                    break;
-            }
 
         }
 
-       
+
 
         [Theory]
         [InlineDataAttribute(0, 0, "SOUTH")]
@@ -207,23 +197,35 @@ namespace Bot1.Tests
 
 
         [Theory]
-        [InlineDataAttribute(0, 0, "SOUTH")]
-        [InlineDataAttribute(0, 0, "WEST")]
-        [InlineDataAttribute(0, 3, "WEST")]
-        [InlineDataAttribute(4, 4, "NORTH")]
-        [InlineDataAttribute(4, 4, "EAST")]
-        public void Report_command_output_correct_details(int xCoordinate, int yCoordinate, string direction)
+        [InlineDataAttribute(0, 0, "SOUTH", "<Report> Robot is currently here : 0,0,SOUTH")]
+        [InlineDataAttribute(0, 0, "WEST", "<Report> Robot is currently here : 0,0,WEST")]
+        [InlineDataAttribute(0, 3, "WEST", "<Report> Robot is currently here : 0,3,WEST")]
+        [InlineDataAttribute(4, 4, "NORTH", "<Report> Robot is currently here : 4,4,NORTH")]
+        [InlineDataAttribute(4, 4, "EAST", "<Report> Robot is currently here : 4,4,EAST")]
+        public void Report_command_output_correct_details(int xCoordinate, int yCoordinate, string direction, string expectedOutput)
         {
             //Arrange
             _testBot.Place(xCoordinate, yCoordinate, direction);
 
 
-            //Act
-            _testBot.Report();
 
-            //Assert
+            //using means that it will be disposed once the using ends
+            //general output of the console is StdOut(). And errors are generally sent to ErrorOut()
+            using (StringWriter testSW = new StringWriter())
+            {
+                Console.SetOut(testSW);
+                //open scope for using, sets the scope of the stringwriter
+                //redirecting console output from standard OUT (stdout) to the new stringwriter
 
-            //Assert.Equal( , _testBot.Report.GetOutput())
+                //Act
+                _testBot.Report();
+
+                //Assert
+                var actualOutput = testSW.ToString().Replace(Environment.NewLine,"");
+                Assert.Equal(expectedOutput, actualOutput);
+                testSW.Dispose();
+
+            }
 
 
 
