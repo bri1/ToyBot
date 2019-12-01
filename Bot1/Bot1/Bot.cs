@@ -161,6 +161,21 @@ namespace Bot1
             }
         }
 
+        public string ReportText()
+        {
+            if (HasBeenPlaced == true)
+            {
+                return ($"<Report> Robot is currently here : {XCoordinate}, {YCoordinate}, {Direction}");
+            }
+
+            else
+            {
+                return "No robot present on table.";
+            }
+        }
+
+
+
         public bool IsValid(int x)
         {
             if ((x >= 5) || (x < 0))
@@ -172,7 +187,7 @@ namespace Bot1
         }
 
 
-
+       
 
     }
 
